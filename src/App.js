@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import question from './reducers/reducer';
+
+import InputContainer from './containers/InputContainer';
+import QuestionContainer from './containers/QuestionContainer';
+import FilterContainer from './containers/FilterContainer';
+
+let store = createStore(question);
 
 class App extends Component {
   render() {
     return (
+      <Provider store={store}>
       <div className="App">
+        <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous"
+    />
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <QuestionContainer/>
+        <InputContainer />
+        <div style={{marginTop: "100px"}}>
+        <FilterContainer />
+        </div>
         </header>
       </div>
+      </Provider>
     );
   }
 }
